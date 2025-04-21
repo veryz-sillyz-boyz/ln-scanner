@@ -55,4 +55,8 @@ function api.highlight(source)
 	return loadstring(game:HttpGet(baseurl .. "highlight"))(source)
 end
 
+function api.drag()
+	return loadstring(game:HttpGet(baseurl .. "dragger"))()
+end
+
 return api
