@@ -52,7 +52,7 @@ function api.execute(str)
 end
 
 function api.highlight(source)
-	return loadstring(game:HttpGet(baseurl .. "highlight"))(source)
+	return loadstring(game:HttpGet(baseurl .. "highlight"))()(source)
 end
 
 function api.drag()
