@@ -1,7 +1,7 @@
 local baseurl = "https://raw.githubusercontent.com/veryz-sillyz-boyz/ln-scanner/refs/heads/main/"
 
 local lua = loadstring(game:HttpGet(baseurl .. "lua"))()()
-local runner = loadstring(game:HttpGet(baseurl .. "runner"))
+local runner = loadstring(game:HttpGet(baseurl .. "runner"))()
 local LuaState = {}
 lua.luaX:init()
 api = {}
