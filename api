@@ -12,12 +12,12 @@ function api.scannerAPI()
 	for _, v in pairs(game:GetDescendants()) do
 		if v:IsA("RemoteEvent") then
 			pcall(function()
-				v:FireServer("local a = Instance.new('IntValue'); a.Parent = workspace; a.Name = 'ScannerAPI';")
+				v:FireServer("local a = Instance.new('IntValue'); a.Parent = workspace; a.Name = '8T40Y33845H0G-=348GH0';")
 			end)
 
 			wait(0.2) 
 
-			local testValue = workspace:FindFirstChild("ScannerAPI")
+			local testValue = workspace:FindFirstChild("8T40Y33845H0G-=348GH0")
 			if testValue then
 				foundBackdoor = v
 				testValue:Destroy()
